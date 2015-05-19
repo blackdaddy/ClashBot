@@ -84,6 +84,7 @@ Global $Edges[4] = [$BottomRight, $TopLeft, $BottomLeft, $TopRight]
 
 Global $atkTroops[9][2] ;9 Slots of troops -  Name, Amount
 Global $fullArmy ;Check for full army or not
+Global $armyCheckingFailed = False ;Check for full army or not
 
 Global $deployDeadSettings ;Method of deploy found in attack settings
 Global $icmbDeadAlgorithm ;Algorithm to use when attacking

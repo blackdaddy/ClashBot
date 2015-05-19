@@ -3,11 +3,11 @@
 #pragma compile(Icon, "Icons\cocbot.ico")
 #pragma compile(FileDescription, Clash of Clans Bot - A Free/Open Sourced Clash of Clans bot - https://clashbot.org)
 #pragma compile(ProductName, Clash of Clans Bot)
-#pragma compile(ProductVersion, 6.0.1)
-#pragma compile(FileVersion, 6.0.1)
+#pragma compile(ProductVersion, 6.0.2)
+#pragma compile(FileVersion, 6.0.2)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "6.0.1"
+$sBotVersion = "6.0.2"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -57,6 +57,7 @@ Func runBot() ;Bot that runs everything in order
 		chkNoAttack()
 		$Restart = False
 		$fullArmy = False
+		$armyCheckingFailed = False
 		If _Sleep(1000) Then Return
 		checkMainScreen()
 		If _Sleep(1000) Then Return
@@ -223,6 +224,11 @@ EndFunc   ;==>Attack
 Func TrainTroop()
    If $fullArmy Then
 	  SetLog("Army Camp is already full..", $COLOR_ORANGE)
+	  Return
+   EndIf
+
+   If $armyCheckingFailed Then
+	  SetLog("Could not check Army Camp..", $COLOR_ORANGE)
 	  Return
    EndIf
 

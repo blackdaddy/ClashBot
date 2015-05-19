@@ -18,7 +18,9 @@ Func CheckArmyCamp()
 	Local $BArmyPos = _PixelSearch(309, 581, 433, 583, Hex(0x4084B8, 6), 5) ;Finds Info button
 	If IsArray($BArmyPos) = False Then
 		SetLog("Your Army Camp is not available", $COLOR_RED)
-	Else
+		$armyCheckingFailed = True
+	 Else
+		$armyCheckingFailed = False
 		Click($BArmyPos[0], $BArmyPos[1]) ;Click Info button
 		If _Sleep(2000) Then Return
 
@@ -39,7 +41,13 @@ Func CheckArmyCamp()
 
 		If $CurCamp > 0 Then
 			SetLog("Total Troop Capacity: " & $CurCamp & "/" & $itxtcampCap, $COLOR_GREEN)
-		EndIf
+	    Else
+			$armyCheckingFailed = True
+			ClickP($TopLeftClient) ;Click Away
+			SetLog("Failed to read your Army camp.", $COLOR_RED)
+			Return
+	    EndIf
+
 		If $CurCamp >= ($itxtcampCap * (GUICtrlRead($cmbRaidcap) / 100)) Or IsArray($Campbar) = True Then
 			$fullArmy = True
 		Else
