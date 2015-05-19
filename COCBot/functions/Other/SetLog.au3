@@ -2,7 +2,7 @@ Func SetLog($String, $Color = 0x000000) ;Sets the text for the log
 	_GUICtrlRichEdit_AppendTextColor($txtLog, Time(), 0x000000)
 	_GUICtrlRichEdit_AppendTextColor($txtLog, $String & @CRLF, _ColorConvert($Color))
 	_GUICtrlStatusBar_SetText($statLog, "Status : " & $String)
-	_FileWriteLog($hLogFileHandle, $String)
+	_log($String)
 EndFunc   ;==>SetLog
 
 Func _GUICtrlRichEdit_AppendTextColor($hWnd, $sText, $iColor)
@@ -20,3 +20,14 @@ Func _ColorConvert($nColor);RGB to BGR or BGR to RGB
 			BitAND($nColor, 0x0000FF00), _
 			BitShift(BitAND($nColor, 0x00FF0000), 16))
 EndFunc   ;==>_ColorConvert
+
+Func _log($String)
+   Local $t = Time() & " " & $String
+   _FileWriteLog($hLogFileHandle, $t)
+   ConsoleWrite($t & @CRLF)
+EndFunc
+
+Func _console($String)
+   Local $t = Time() & " " & $String
+   ConsoleWrite($t & @CRLF)
+EndFunc

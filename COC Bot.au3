@@ -3,11 +3,11 @@
 #pragma compile(Icon, "Icons\cocbot.ico")
 #pragma compile(FileDescription, Clash of Clans Bot - A Free/Open Sourced Clash of Clans bot - https://clashbot.org)
 #pragma compile(ProductName, Clash of Clans Bot)
-#pragma compile(ProductVersion, 5.7)
-#pragma compile(FileVersion, 5.7)
+#pragma compile(ProductVersion, 6.0.1)
+#pragma compile(FileVersion, 6.0.1)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "6.0"
+$sBotVersion = "6.0.1"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -87,7 +87,8 @@ Func runBot() ;Bot that runs everything in order
 			CheckArmyCamp()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-		EndIf
+		 EndIf
+		 _log("Main loop check : $DCattack = " & $DCattack & ", $CommandStop = " & $CommandStop & ", $fullArmy = " & $fullArmy)
 		If $DCattack = 1 And $CommandStop <> 0 And $CommandStop <> 3 And $fullArmy Then
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
@@ -101,7 +102,7 @@ Func runBot() ;Bot that runs everything in order
 			If ZoomOut() = False Then ContinueLoop
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
-			TrainTroop()
+		    TrainTroop()
 			If _Sleep(1000) Then Return
 			checkMainScreen(False)
 			TrainDark()
@@ -147,13 +148,19 @@ Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
 	While $fullArmy = False
 		If $CommandStop = -1 Then SetLog("~~~Waiting for full army~~~", $COLOR_PURPLE)
-		Local $hTimer = TimerInit(), $x = 30000
+
+	    _log("-------------- Loop Begin : Waiting for full army --------------- : $CommandStop = " & $CommandStop)
+
+		Local $hTimer = TimerInit(), $x = 15000
 		If $CommandStop = 3 Then $x = 15000
 		If _Sleep($x) Then ExitLoop
 		checkMainScreen()
 		If _Sleep(1000) Then ExitLoop
 		If ZoomOut() = False Then ContinueLoop
 		If _Sleep(1000) Then ExitLoop
+
+	    _log("$iCollectCounter = " & $iCollectCounter & ", $COLLECTATCOUNT = " & $COLLECTATCOUNT & ", $CommandStop = " & $CommandStop & ", $fullArmy = " & $fullArmy)
+
 		If $iCollectCounter > $COLLECTATCOUNT Then ; This is prevent from collecting all the time which isn't needed anyway
 			Collect()
 			If _Sleep(1000) Or $RunState = False Then ExitLoop
@@ -214,6 +221,11 @@ Func Attack() ;Selects which algorithm
 EndFunc   ;==>Attack
 
 Func TrainTroop()
+   If $fullArmy Then
+	  SetLog("Army Camp is already full..", $COLOR_ORANGE)
+	  Return
+   EndIf
+
    If _GUICtrlComboBox_GetCurSel($cmbTroopComp) = 10 Then
 	  TrainCustom()
    Else

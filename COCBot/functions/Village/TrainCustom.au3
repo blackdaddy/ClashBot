@@ -17,7 +17,7 @@ Func TrainCustom()
 		$Trainrax3 = True
 	 EndIf
 
-	SetLog("Training Troops...", $COLOR_BLUE)
+	SetLog("Training Custom Troops...", $COLOR_BLUE)
 
 	For $i = 0 To 3 ;iterate through barracks
 		If _Sleep(500) Then ExitLoop
@@ -29,9 +29,9 @@ Func TrainCustom()
 		Click($barrackPos[$i][0], $barrackPos[$i][1]) ;Click Barrack
 		If _Sleep(500) Then ExitLoop
 
-		Local $TrainPos = _PixelSearch(155, 603, 694, 605, Hex(0x603818, 6), 5) ;Finds Train Troops button
+		Local $TrainPos = _PixelSearch(155, 590, 694, 605, Hex(0x6D4018, 6), 10) ;Finds Train Troops button
 		If IsArray($TrainPos) = False Then
-			SetLog("Barrack " & $i + 1 & " is not available", $COLOR_RED)
+			SetLog("Barrack " & $i + 1 & " is not available!!", $COLOR_RED)
 			If _Sleep(500) Then ExitLoop
 		Else
 			Click($TrainPos[0], $TrainPos[1]) ;Click Train Troops button
