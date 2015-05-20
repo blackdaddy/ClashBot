@@ -42,10 +42,15 @@ Func CheckArmyCamp()
 		If $CurCamp > 0 Then
 			SetLog("Total Troop Capacity: " & $CurCamp & "/" & $itxtcampCap, $COLOR_GREEN)
 	    Else
-			$armyCheckingFailed = True
-			ClickP($TopLeftClient) ;Click Away
-			SetLog("Failed to read your Army camp.", $COLOR_RED)
-			Return
+			Local $res = _PixelSearch(225, 380, 240, 395, Hex(0xC9C6B6, 6), 5)
+			If IsArray($res) = False Then
+			   $armyCheckingFailed = True
+			   ClickP($TopLeftClient) ;Click Away
+			   SetLog("Failed to read your Army camp.", $COLOR_RED)
+			   Return
+			EndIf
+
+			SetLog("Empty Army camp.", $COLOR_ORANGE)
 	    EndIf
 
 		If $CurCamp >= ($itxtcampCap * (GUICtrlRead($cmbRaidcap) / 100)) Or IsArray($Campbar) = True Then

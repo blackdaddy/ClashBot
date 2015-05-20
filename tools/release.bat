@@ -2,7 +2,7 @@
 @SET TARGET=ClashBot
 @SET TARGET_DIR=ClashBot
 @SET ZIP_7Z_FILE=7z\7z.exe
-@SET VER=v6_0_2
+@SET VER=v6_0_3
 @SET ARCHIVE_FILE_NAME=%TARGET%_%VER%.zip
 
 rmdir /Q /S %TARGET_DIR%\

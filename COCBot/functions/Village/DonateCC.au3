@@ -1,6 +1,9 @@
 ;Donates troops
 
+Global $detectedNoTroopsForDonates = False
+
 Func DonateCC()
+	$detectedNoTroopsForDonates = False
 	Global $Donate = $ichkDonateBarbarians = 1 Or $ichkDonateArchers = 1 Or $ichkDonateGiants = 1 Or $ichkDonateAllBarbarians = 1 Or $ichkDonateAllArchers = 1 Or $ichkDonateAllGiants = 1
 	If $Donate = False Then Return
 	Local $y = 119
@@ -43,6 +46,11 @@ Func DonateCC()
 								ExitLoop
 							EndIf
 						Next
+
+						If $detectedNoTroopsForDonates = True Then
+							ExitLoop
+						EndIf
+
 						If $Donate Then
 							If _Sleep(500) Then ExitLoop
 							$y = $DonatePixel[1] + 10
@@ -57,6 +65,11 @@ Func DonateCC()
 								ExitLoop
 							EndIf
 						Next
+
+						If $detectedNoTroopsForDonates = True Then
+							ExitLoop
+						EndIf
+
 						If $Donate Then
 							If _Sleep(500) Then ExitLoop
 							$y = $DonatePixel[1] + 10
@@ -71,6 +84,11 @@ Func DonateCC()
 								ExitLoop
 							EndIf
 						Next
+
+						If $detectedNoTroopsForDonates = True Then
+							ExitLoop
+						EndIf
+
 						If $Donate Then
 							If _Sleep(500) Then ExitLoop
 							$y = $DonatePixel[1] + 10
@@ -86,6 +104,10 @@ Func DonateCC()
 						Case $ichkDonateAllGiants = 1
 							DonateGiants()
 					EndSelect
+				EndIf
+
+				If $detectedNoTroopsForDonates = True Then
+					ExitLoop
 				EndIf
 			Else
 				ExitLoop
@@ -148,6 +170,7 @@ Func DonateBarbs()
 			Return
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
+			$detectedNoTroopsForDonates = True
 			Return
 		EndIf
 		If _Sleep(500) Then Return
@@ -176,6 +199,7 @@ Func DonateArchers()
 			Return
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
+			$detectedNoTroopsForDonates = True
 			Return
 		EndIf
 		If _Sleep(500) Then Return
@@ -202,11 +226,13 @@ Func DonateGiants()
 			$Donate = True
 		Else
 			SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
+			$detectedNoTroopsForDonates = True
 		EndIf
 		If _Sleep(500) Then Return
 		ClickP($TopLeftClient) ;Click Away
 	Else
 		SetLog("No troops available for donation, donating later...", $COLOR_ORANGE)
+		$detectedNoTroopsForDonates = True
 		If _Sleep(500) Then Return
 		ClickP($TopLeftClient) ;Click Away
 	EndIf
