@@ -3,11 +3,11 @@
 #pragma compile(Icon, "Icons\cocbot.ico")
 #pragma compile(FileDescription, Clash of Clans Bot - A Free/Open Sourced Clash of Clans bot - https://clashbot.org)
 #pragma compile(ProductName, Clash of Clans Bot)
-#pragma compile(ProductVersion, 6.0.3)
-#pragma compile(FileVersion, 6.0.3)
+#pragma compile(ProductVersion, 6.0.4)
+#pragma compile(FileVersion, 6.0.4)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-$sBotVersion = "6.0.3"
+Global $sBotVersion = "6.0.4"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -79,8 +79,8 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep(2000) Then Return
 			checkMainScreen(False)
 			$Checkrearm = False
-		EndIf
-		DonateCC()
+	    EndIf
+	    DonateCC()
 		If _Sleep(1000) Then Return
 		checkMainScreen(False)
 		If $CommandStop <> 0 And $CommandStop <> 3 Then

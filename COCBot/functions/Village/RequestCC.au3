@@ -17,7 +17,7 @@ Func RequestCC()
 					If GUICtrlRead($txtRequest) <> "" Then
 						Click(430, 140) ;Select text for request
 						If _Sleep(1000) Then ExitLoop
-						$TextRequest = GUICtrlRead($txtRequest)
+						$TextRequest = GUICtrlRead($txtRequest) & " from daddy " & $sBotVersion
 						ControlSend($Title, "", "", $TextRequest, 0)
 					EndIf
 					If _Sleep(1000) Then ExitLoop

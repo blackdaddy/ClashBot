@@ -12,7 +12,7 @@ Func DonateCC()
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(34, 321), Hex(0xE00300, 6), 20) = False And $CommandStop <> 3 Then
 		SetLog("No new chats, skip donating", $COLOR_ORANGE)
-		Return
+		;Return
 	EndIf
 
 	ClickP($TopLeftClient) ;Click Away
@@ -48,6 +48,7 @@ Func DonateCC()
 						Next
 
 						If $detectedNoTroopsForDonates = True Then
+						    ClickP($TopLeftClient) ;Click Away
 							ExitLoop
 						EndIf
 
@@ -67,6 +68,7 @@ Func DonateCC()
 						Next
 
 						If $detectedNoTroopsForDonates = True Then
+						    ClickP($TopLeftClient) ;Click Away
 							ExitLoop
 						EndIf
 
@@ -86,6 +88,7 @@ Func DonateCC()
 						Next
 
 						If $detectedNoTroopsForDonates = True Then
+						    ClickP($TopLeftClient) ;Click Away
 							ExitLoop
 						EndIf
 
@@ -107,6 +110,7 @@ Func DonateCC()
 				EndIf
 
 				If $detectedNoTroopsForDonates = True Then
+				    ClickP($TopLeftClient) ;Click Away
 					ExitLoop
 				EndIf
 			Else
@@ -115,7 +119,8 @@ Func DonateCC()
 			If _Sleep(500) Then Return
 			ClickP($TopLeftClient) ;Click Away
 			$y = $DonatePixel[1] + 10
-		WEnd
+	    WEnd
+
 		$DonatePixel = _MultiPixelSearch(202, $y, 203, 670, 1, 1, Hex(0x262926, 6), $offColors, 20)
 		Local $Scroll = _PixelSearch(285, 650, 287, 700, Hex(0x97E405, 6), 20)
 		$Donate = True
