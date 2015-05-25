@@ -1,5 +1,6 @@
 Func CheckArmyCamp()
 	SetLog("Checking Army Camp...", $COLOR_BLUE)
+	ZoomOut()
 
 	If _Sleep(100) Then Return
 
