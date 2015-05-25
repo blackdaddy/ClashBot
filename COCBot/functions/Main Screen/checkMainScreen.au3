@@ -20,4 +20,6 @@ Func checkMainScreen($Check = True) ;Checks if in main screen
 		waitMainScreen()
 	WEnd
 	If $Check = True Then SetLog("Main Screen Located", $COLOR_BLUE)
+
+    ZoomOut()
 EndFunc   ;==>checkMainScreen
