@@ -1,7 +1,7 @@
 ;                          x    y     color  tolerance
 Global $IsMain[4]                   = [284,  28, 0x41B1CD, 20] ; origin: [284,  28, 0x41B1CD, 20]
 Global $IsMainGrayed[4]             = [284,  28, 0x215B69, 20] ; origin: [284,  28, 0x41B1CD, 20]
-Global $TopLeftClient[2]            = [  1,  15]
+Global $TopLeftClient[2]            = [  1,  80]
 Global $IsInactive[4]               = [458, 311, 0x33B5E5, 20] ; origin: [458, 311, 0x33B5E5, 20]
 Global $ReloadButton[2]             = [416, 399]               ; origin: [416, 399]
 Global $AttaqueButton[2]            = [ 60, 614]			   ; origin: [60, 614]

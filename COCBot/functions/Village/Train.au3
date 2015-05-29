@@ -30,12 +30,12 @@ Func TrainIt($troopKind, $howMuch = 1, $iSleep = 100)
 	_CaptureRegion()
 	Local $pos = GetTrainPos($troopKind)
 	If IsArray($pos) Then
-		If CheckPixel($pos) Then
+		;If CheckPixel($pos) Then
 			ClickP($pos, $howMuch, 20)
 			_log("TrainIt called : " & $troopKind & "," & $howMuch & @CRLF)
 			If _Sleep($iSleep) Then Return False
 			Return True
-		EndIf
+		;EndIf
 	EndIf
 EndFunc   ;==>TrainIt
 
@@ -87,6 +87,8 @@ Func Train()
 	$GoblinEBarrack = Floor($CurGoblin / 4)
 
 	For $i = 0 To 3 ;iterate through barracks
+	    If ZoomOut() = False Then ExitLoop
+
 		If _Sleep(500) Then ExitLoop
 
 		ClickP($TopLeftClient) ;Click Away
