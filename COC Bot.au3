@@ -3,11 +3,11 @@
 #pragma compile(Icon, "Icons\cocbot.ico")
 #pragma compile(FileDescription, Clash of Clans Bot - A Free/Open Sourced Clash of Clans bot - https://clashbot.org)
 #pragma compile(ProductName, Clash of Clans Bot)
-#pragma compile(ProductVersion, 6.0.9)
-#pragma compile(FileVersion, 6.0.9)
+#pragma compile(ProductVersion, 6.0.10)
+#pragma compile(FileVersion, 6.0.10)
 #pragma compile(LegalCopyright, © The Bytecode Club)
 
-Global $sBotVersion = "6.0.9"
+Global $sBotVersion = "6.0.10"
 $sBotTitle = "AutoIt ClashBot v" & $sBotVersion
 
 If _Singleton($sBotTitle, 1) = 0 Then
@@ -153,8 +153,8 @@ Func Idle() ;Sequence that runs until Full Army
 
 	    _log("-------------- Loop Begin : Waiting for full army --------------- : $CommandStop = " & $CommandStop)
 
-		Local $hTimer = TimerInit(), $x = 15000
-		If $CommandStop = 3 Then $x = 15000
+		Local $hTimer = TimerInit(), $x = 10000
+		If $CommandStop = 3 Then $x = 10000
 		If _Sleep($x) Then ExitLoop
 		checkMainScreen()
 		If _Sleep(1000) Then ExitLoop

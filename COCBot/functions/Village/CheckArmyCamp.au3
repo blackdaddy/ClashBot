@@ -9,10 +9,12 @@ Func CheckArmyCamp()
 	If $ArmyPos[0] = "" Then
 		LocateCamp()
 		SaveConfig()
-	Else
-		If _Sleep(100) Then Return
-		Click($ArmyPos[0], $ArmyPos[1]) ;Click Army Camp
-	EndIf
+    EndIf
+
+    If _Sleep(100) Then Return
+	Click($ArmyPos[0], $ArmyPos[1]) ;Click Army Camp
+
+    If _Sleep(1000) Then Return
 
 	_CaptureRegion()
 	If _Sleep(500) Then Return

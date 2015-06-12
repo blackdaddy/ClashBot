@@ -89,14 +89,14 @@ Func Train()
 	For $i = 0 To 3 ;iterate through barracks
 	    If ZoomOut() = False Then ExitLoop
 
-		If _Sleep(500) Then ExitLoop
+		If _Sleep(700) Then ExitLoop
 
 		ClickP($TopLeftClient) ;Click Away
 
 		If _Sleep(500) Then ExitLoop
 
 		Click($barrackPos[$i][0], $barrackPos[$i][1]) ;Click Barrack
-		If _Sleep(500) Then ExitLoop
+		If _Sleep(900) Then ExitLoop
 
 		Local $TrainPos = _PixelSearch(155, 590, 694, 605, Hex(0x6D4018, 6), 15) ;Finds Train Troops button
 		If IsArray($TrainPos) = False Then
